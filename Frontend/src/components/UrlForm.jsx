@@ -1,19 +1,32 @@
 import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
+import { createShortUrl } from '../api/shortUrl.api.js';
+//import { useQueryClient,useMutation,useQuery } from '@tanstack/react-query';
 
 
 const UrlForm = () => {
-const [url, seturl] = useState("hello");
+const [url, seturl] = useState("https://www.google.com");
 const [shortUrl, setShortUrl] = useState();
   const [copied, setCopied] = useState(false);
+  //const queryClient=useQueryClient();
+  
+
 const handleSubmit= async()=>{
    
-const {data}=await axios.post("http://localhost:3000/api/create",{url});
-setShortUrl(data);
-console.log(data);
+const shortUrl= await createShortUrl(url);
+setShortUrl(shortUrl);
+
 
 }
+
+//const query=useQuery({queryKey:["shorturl"],queryFn:handleSubmit}) // for fetching the data
+// const mutation=useMutation({
+//   mutationfn:handleSubmit,
+//   onSuccess:()=>{
+//     queryClient.invalidateQueries({queryKey:["shorturl"]})
+//   }
+// })
 
 
   const handleCopy = () => {
