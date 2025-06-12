@@ -6,6 +6,7 @@ import { store } from '../store/store.js';
 import { useQueryClient } from '@tanstack/react-query';
 
 
+
 export const checkAuth= async({context})=>{
 try{
   const {queryClient,store}=context;
@@ -19,8 +20,9 @@ try{
     return false;
   }
   store.dispatch(login(user));
-  const {isauthenticated}=store.getState().auth;
-  if(!isauthenticated){
+  const { isAuthenticated } = store.getState().auth;
+
+  if(!isAuthenticated){
     return false;
   }
   return true;

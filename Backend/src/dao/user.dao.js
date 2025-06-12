@@ -1,5 +1,6 @@
 
 import User from "../models/user.model.js";
+import UrlModel from "../models/shorturl.model.js";
 
 export const findUserByEmail = async (email) => {
     const user = await User.findOne({ email });
@@ -28,6 +29,13 @@ export const createUser = async (user) => {
     await newUser.save();
     return newUser;
 }
+
+export const getShortUrl = async (id) => {
+
+   return await UrlModel.find({user:id})
+}
+
+
 
 // export const updateUser = async (id, name, email, password) => {
 //  const user=await User.findById(id);

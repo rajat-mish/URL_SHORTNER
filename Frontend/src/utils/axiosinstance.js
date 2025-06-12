@@ -2,10 +2,16 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "/api",
+  baseURL: "http://localhost:3000/api", // ✅ Your real backend
   timeout: 10000,
-  withCredentials: true,
+  withCredentials: true, // ✅ Important for cookies
 });
+
+// const instance = axios.create({
+//   baseURL: 'http://localhost:5000/api',
+//   withCredentials: true, // send cookies to backend
+// })
+
 
 // make error handler for instace
 

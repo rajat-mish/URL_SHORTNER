@@ -10,8 +10,10 @@ import { errorHandler } from './src/utils/errorHandler.js';
 import cors from 'cors';
 import { attachUser } from './src/utils/attachUser.js';
 import cookieParser from 'cookie-parser';
+import user_routes from './src/routes/user.route.js';
 
-dotenv.config('./.env');
+dotenv.config({ path: './.env' });
+
 
 const app = express();
 app.use(cors({
@@ -23,6 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(attachUser);
+app.use('/api/user',user_routes);
 app.use('/api/auth',auth_routes);
 app.use('/api/create',shortUrl);
 app.use(errorHandler);

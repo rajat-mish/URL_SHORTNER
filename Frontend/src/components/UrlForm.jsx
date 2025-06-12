@@ -2,6 +2,10 @@ import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
 import { createShortUrl } from '../api/shortUrl.api.js';
+import { useSelector } from 'react-redux';
+import { QueryClient } from '@tanstack/react-query';
+
+
 //import { useQueryClient,useMutation,useQuery } from '@tanstack/react-query';
 
 
@@ -9,16 +13,28 @@ const UrlForm = () => {
 const [url, seturl] = useState("https://www.google.com");
 const [shortUrl, setShortUrl] = useState();
   const [copied, setCopied] = useState(false);
+  const [customSlug, setCustomSlug] = useState('');
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
+
   //const queryClient=useQueryClient();
   
 
-const handleSubmit= async()=>{
-   
-const shortUrl= await createShortUrl(url);
-setShortUrl(shortUrl);
+// const handleSubmit= async(e)=>{
+//    e.preventDefault();
+// const shortUrl= await createShortUrl(url);
+// setShortUrl(shortUrl);
 
 
-}
+// }
+
+const handleSubmit = async () => {
+  // Only include customSlug if provided and authenticated
+  const shortUrl = await createShortUrl(url,  customSlug );
+  setShortUrl(shortUrl);
+  QueryClient.invalidateQueries({ queryKey: ['userUrls'] });
+};
+
 
 //const query=useQuery({queryKey:["shorturl"],queryFn:handleSubmit}) // for fetching the data
 // const mutation=useMutation({
@@ -74,6 +90,26 @@ setShortUrl(shortUrl);
         )} */}
 
 
+
+{isAuthenticated && (
+  <div className="mt-4">
+    <label htmlFor="customSlug" className="block text-sm font-medium text-gray-700 mb-1">
+      Custom URL (optional)
+    </label>
+    <input
+      type="text"
+      id="customSlug"
+      value={customSlug}
+      onChange={(e) => setCustomSlug(e.target.value)}
+      placeholder="Enter custom slug"
+      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
+)}
+
+
+
+
              {shortUrl && (
   <div className="mt-6">
     <h2 className="text-lg font-semibold mb-2">Your shortened URL:</h2>
@@ -86,11 +122,12 @@ setShortUrl(shortUrl);
       />
     <button
               onClick={handleCopy}
-              className={`px-4 py-2 rounded-r-md transition-all ${
-                copied
-                  ? 'bg-green-500 text-white'
-                  : 'bg-gray-200 hover:bg-gray-300 text-black'
-              }`}
+             className={`px-4 py-2 rounded-r-md transition-all ${
+  copied
+    ? 'bg-green-500 text-white'
+    : 'bg-gray-200 hover:bg-gray-300 text-black'
+}`}
+
             >
               {copied ? 'Copied!' : 'Copy'}
             </button>
