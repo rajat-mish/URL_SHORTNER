@@ -17,7 +17,7 @@ A full-stack project to shorten long URLs using custom aliases.
 - `Backend/` — Express + MongoDB API
 
 ## 📌 Status
-- Ongoing, targeted to finish by June 10, 2025.
+- Finished!!
 
 # 🔗 Repository
 [GitHub](https://github.com/rajat-mish/URL_SHORTNER)
