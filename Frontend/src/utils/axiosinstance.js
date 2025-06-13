@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000/api", // ✅ Your real backend
+  baseURL: "https://url-shortner-8afi.onrender.com/api", // ✅ Your real backend
   timeout: 10000,
   withCredentials: true, // ✅ Important for cookies
 });
