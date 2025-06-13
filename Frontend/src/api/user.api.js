@@ -18,7 +18,15 @@ export const registerUser = async (username, email, password) => {
 };
 
 export const logoutUser = async () => {
-  await instance.get("/auth/logout"); // ✅
+  try {
+    const response = await instance.post("/auth/logout", {}, {
+      withCredentials: true
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Logout error:", error);
+    throw error;
+  }
 };
 
 export const getCurrentUser = async () => {

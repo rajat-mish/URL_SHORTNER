@@ -5,10 +5,21 @@ import { checkAuth } from '../utils/helper.js';
 
 
 
+// export const dashboardRoute = createRoute({
+//   getParentRoute: () => rootRoute,
+//   path: '/dashboard',
+//   component: DashboardPage,
+//   beforeLoad: checkAuth
+// });
+
+
 export const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/dashboard',
   component: DashboardPage,
-  beforeLoad: checkAuth
+  beforeLoad: checkAuth,
+  loaderOpts: {
+    preload: false, // disable preloading
+  },
 });
 

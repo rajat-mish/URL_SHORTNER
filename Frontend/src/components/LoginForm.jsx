@@ -63,7 +63,7 @@ const LoginForm = ({state}) => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md -mt-50">
         <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
         
         <div  className="space-y-4">
@@ -115,9 +115,9 @@ const LoginForm = ({state}) => {
         
         <div className="mt-4 text-center text-sm text-gray-600">
           <p className='cursor-pointer'>Don't have an account? <span onClick={()=>state(false)} className="text-blue-500 ">Register</span></p>
-          <p className="mt-2">
+          {/* <p className="mt-2">
             <a href="/forgot-password" className="text-blue-500 ">Forgot password?</a>
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
