@@ -17,7 +17,7 @@ dotenv.config({ path: './.env' });
 
 const app = express();
 app.use(cors({
-    origin: 'https://url-shortner-virid-tau.vercel.app/',
+    origin: 'https://url-shortner-virid-tau.vercel.app',
     credentials: true,
 }));
 app.use(express.json());
