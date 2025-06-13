@@ -26,7 +26,7 @@ const RegisterForm = ({state}) => {
     
     try {
       // Call your registration API
-      const response = await fetch('http://localhost:3000/api/auth/register', {
+      const response = await fetch('https://url-shortner-8afi.onrender.com/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

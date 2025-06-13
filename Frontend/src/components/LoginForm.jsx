@@ -30,7 +30,7 @@ const LoginForm = ({state}) => {
       // setLoading(false);
       //   console.log('Login successful:', data)
 
-      const response = await fetch('http://localhost:3000/api/auth/login', {
+      const response = await fetch('https://url-shortner-8afi.onrender.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
